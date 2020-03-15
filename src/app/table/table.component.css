@@ -1,4 +1,15 @@
 main{
   display: flex;
   justify-content: space-between;
+  padding: 15% 3em;
+}
+
+td{
+  width: 5em;
+  background: lightblue;
+  height: 5em;
+}
+
+td .forbidden{
+  background: lightcoral;
 }

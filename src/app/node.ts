@@ -4,13 +4,13 @@ export abstract class Node {
    _x: number;
    _y: number;
 
-  constructor(x: number, y: number) {
+  protected constructor(x: number, y: number) {
     this._x = x;
     this._y = y;
   }
   public abstract isWalkable(): boolean;
 
-  get walkable(): boolean {
+  getwalkable(): boolean {
     return this._walkable;
   }
 
