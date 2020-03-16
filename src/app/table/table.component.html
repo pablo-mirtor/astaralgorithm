@@ -1,13 +1,14 @@
 <main>
   <table>
     <tr *ngFor="let row of nodeTable">
-      <td *ngFor="let cell of row"></td>
+      <td *ngFor="let cell of row" (click)="cellClicked(cell)" [ngClass]="cell.state"></td>
     </tr>
   </table>
   <div>
     <span>Número de columnas</span>
-    <input type="number">
+    <input type="number" [(ngModel)]="numColumns">
     <span>Número de filas</span>
-    <input type="number">
+    <input type="number" [(ngModel)]="numRows">
+    <button (click)="updateTable()">Cambiar</button>
   </div>
 </main>

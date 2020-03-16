@@ -1,36 +1,18 @@
-export abstract class Node {
+import {CellState} from './cell-state.enum';
 
-   private _walkable: boolean;
-   _x: number;
-   _y: number;
+export class Node {
 
-  protected constructor(x: number, y: number) {
-    this._x = x;
-    this._y = y;
-  }
-  public abstract isWalkable(): boolean;
+   public state: CellState;
 
-  getwalkable(): boolean {
-    return this._walkable;
+   constructor() {
+     this.state = CellState.empty;
+   }
+
+  getState(): CellState {
+     return this.state;
   }
 
-  set walkable(value: boolean) {
-    this._walkable = value;
-  }
-
-  get x(): number {
-    return this._x;
-  }
-
-  set x(value: number) {
-    this._x = value;
-  }
-
-  get y(): number {
-    return this._y;
-  }
-
-  set y(value: number) {
-    this._y = value;
+  setState(cs: CellState): void {
+     this.state = cs;
   }
 }

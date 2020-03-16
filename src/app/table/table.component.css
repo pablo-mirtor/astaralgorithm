@@ -1,7 +1,6 @@
 main{
   display: flex;
   justify-content: space-between;
-  padding: 15% 3em;
 }
 
 td{
@@ -10,6 +9,18 @@ td{
   height: 5em;
 }
 
-td .forbidden{
+td.empty{
+  background: lightblue;
+}
+
+td.forbidden{
   background: lightcoral;
+}
+
+td.end{
+  background: lightgreen;
+}
+
+td.start{
+  background: lightgoldenrodyellow;
 }

@@ -1,7 +1,7 @@
 export enum CellState {
-  empty,
-  start,
-  end,
-  forbidden,
-  done,
+  empty= 'empty',
+  start= 'start',
+  end= 'end',
+  forbidden= 'forbidden',
+  done= 'done',
 }
