@@ -1,6 +1,7 @@
 main{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
 }
 
 td{
@@ -23,4 +24,9 @@ td.end{
 
 td.start{
   background: lightgoldenrodyellow;
+}
+
+.options{
+  display:grid;
+  grid-columns: auto auto;
 }

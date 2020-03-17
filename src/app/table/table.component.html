@@ -1,14 +1,21 @@
 <main>
   <table>
-    <tr *ngFor="let row of nodeTable">
-      <td *ngFor="let cell of row" (click)="cellClicked(cell)" [ngClass]="cell.state"></td>
+    <tr *ngFor="let row of nodeTable.getNodeTable()">
+      <td *ngFor="let cell of row" (click)="cellClicked(cell)" [ngClass]="cell.getState()"></td>
     </tr>
   </table>
-  <div>
-    <span>Número de columnas</span>
-    <input type="number" [(ngModel)]="numColumns">
-    <span>Número de filas</span>
-    <input type="number" [(ngModel)]="numRows">
+  <div class="options">
+
+      <span>Número de columnas</span>
+      <input type="number" [(ngModel)]="numColumns">
+
+
+      <span>Número de filas</span>
+      <input type="number" [(ngModel)]="numRows">
+
     <button (click)="updateTable()">Cambiar</button>
+    <button (click)="iniEnable()">Añadir inicio</button>
+    <button (click)="endEnable()">Añadir final</button>
+    <button>Resolver</button>
   </div>
 </main>
