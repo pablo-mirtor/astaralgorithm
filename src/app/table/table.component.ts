@@ -54,4 +54,8 @@ export class TableComponent implements OnInit {
     this.clickEnableEnd = true;
     this.clickEnableStart = false;
   }
+
+  solve(): void{
+    this.tableService.solveMap();
+  }
 }

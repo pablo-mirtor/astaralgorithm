@@ -26,6 +26,10 @@ td.start{
   background: lightgoldenrodyellow;
 }
 
+td.done{
+  background: darkslategray;
+}
+
 .options{
   display:grid;
   grid-columns: auto auto;

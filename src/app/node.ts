@@ -1,5 +1,6 @@
 import {CellState} from './cell-state.enum';
 import {Coord} from './coord';
+
 export class Node {
 
    private _state: CellState;
@@ -9,6 +10,7 @@ export class Node {
    constructor(x: number, y: number) {
      this._state = CellState.empty;
      this._coords = new Coord(x, y);
+     this._opened = true;
    }
 
   getState(): CellState {
@@ -17,6 +19,10 @@ export class Node {
 
   setState(value: CellState) {
     this._state = value;
+    if(value === CellState.forbidden)
+      this._opened = false;
+    else
+      this._opened = true;
   }
 
   getCoords(): Coord {

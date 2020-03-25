@@ -13,6 +13,8 @@ export class Table {
   constructor(numRows: number, numColumns: number) {
     this._numRows = numRows;
     this._numColumns = numColumns;
+    this._startCoords = null;
+    this._endCoords = null;
     this._nodeTable = [];
     for (let i = 0; i < this._numRows; i++) {
       this._nodeTable[i] = [];
@@ -51,6 +53,9 @@ export class Table {
   }
 
   setEndCoords(value: Coord) {
+    if(this._endCoords != null){
+      this.at(this._endCoords).setState(CellState.empty);
+    }
     this._endCoords = value;
   }
   getStartCoords(): Coord {
@@ -58,10 +63,40 @@ export class Table {
   }
 
   setStartCoords(value: Coord) {
+    if(this._startCoords != null){
+      this.at(this._startCoords).setState(CellState.empty);
+    }
     this._startCoords = value;
   }
 
   at(c: Coord): Node{
     return this._nodeTable[c.getX()][c.getY()];
   }
+
+  getObstacles(): Node[] {
+    let obstacles: Node[] = new Array();
+
+    this._nodeTable.forEach(function(e) {
+      e.forEach(function(n) {
+        if (!n.getOpened())
+          obstacles.push(n);
+      })
+    });
+    return obstacles;
+  }
+
+    getAdyacents(origen: Coord): Node[]{
+
+      let result: Node[] = new Array<Node>();
+      if (origen == null) return result;
+
+      for (let i = origen.getX()-1; i<=origen.getX()+1; i++) {
+        for(let j = origen.getY()-1; j<=origen.getY()+1; j++) {
+          if(j>=0 && i>=0 && j<this._numColumns && i<this._numRows && (this._nodeTable[i][j].getCoords()!=origen)) {
+            result.push(this._nodeTable[i][j]);
+          }
+        }
+      }
+      return result;
+    }
 }
