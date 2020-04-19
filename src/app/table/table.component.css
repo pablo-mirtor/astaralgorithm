@@ -34,3 +34,7 @@ td.done{
   display:grid;
   grid-columns: auto auto;
 }
+
+.restart{
+  display: none;
+}

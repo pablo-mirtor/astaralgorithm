@@ -5,17 +5,14 @@
     </tr>
   </table>
   <div class="options">
-
       <span>Número de columnas</span>
       <input type="number" [(ngModel)]="numColumns">
-
-
       <span>Número de filas</span>
       <input type="number" [(ngModel)]="numRows">
-
     <button (click)="updateTable()">Cambiar</button>
     <button (click)="iniEnable()">Añadir inicio</button>
     <button (click)="endEnable()">Añadir final</button>
     <button (click)="solve()">Resolver</button>
   </div>
+  <button class="restart" (click)="restart()">Empezar de nuevo</button>
 </main>

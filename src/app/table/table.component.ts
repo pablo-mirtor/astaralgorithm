@@ -56,6 +56,16 @@ export class TableComponent implements OnInit {
   }
 
   solve(): void{
-    this.tableService.solveMap();
+    if(this.tableService.table.getStartCoords() == null)
+      alert("Selecciona un inicio");
+    else if(this.tableService.table.getEndCoords() == null)
+      alert("Selecciona un final");
+    else
+      this.tableService.solveMap();
+  }
+
+  restart(): void{
+    this.updateTable();
+
   }
 }

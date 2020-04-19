@@ -67,7 +67,7 @@ export class TableServiceService {
           }
       }
     }
-
+    alert("No hay solución");
     return null;
   }
 
@@ -89,10 +89,10 @@ export class TableServiceService {
   }
 
   reconstructedPath( current: Node, cameFrom: Map<Node, Node> ): void{
-
       while (current != null) {
           let previous: Node = cameFrom.get(current);
-          current.setState(CellState.done);
+          if(current.getState() == CellState.empty)
+            current.setState(CellState.done);
           current = previous;
         }
   }
