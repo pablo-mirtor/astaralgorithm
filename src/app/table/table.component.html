@@ -1,18 +1,22 @@
 <main>
   <table>
     <tr *ngFor="let row of nodeTable.getNodeTable()">
-      <td *ngFor="let cell of row" (click)="cellClicked(cell)" [ngClass]="cell.getState()"></td>
+      <td *ngFor="let cell of row" (click)="!restartButton && cellClicked(cell)" [ngClass]="cell.getState()"></td>
     </tr>
   </table>
-  <div class="options">
-      <span>Número de columnas</span>
-      <input type="number" [(ngModel)]="numColumns">
-      <span>Número de filas</span>
+  <div [className]="restartButton ? 'disabled': 'options'">
+    <div class="colRowSetter">
+      <span>Número de columnas:</span>
+      <input type="number" [(ngModel)]="numColumns" max="9">
+      <span>Número de filas:</span>
       <input type="number" [(ngModel)]="numRows">
+    </div>
     <button (click)="updateTable()">Cambiar</button>
-    <button (click)="iniEnable()">Añadir inicio</button>
-    <button (click)="endEnable()">Añadir final</button>
-    <button (click)="solve()">Resolver</button>
+    <div class="setIniEndOptions">
+      <button class="start" (click)="iniEnable()">Añadir inicio</button>
+      <button class="end" (click)="endEnable()">Añadir final</button>
+    </div>
+    <button class="solve" (click)="solve()">Resolver</button>
   </div>
-  <button class="restart" (click)="restart()">Empezar de nuevo</button>
+  <button (click)="restart()" [className]="restartButton ? 'restart solve': 'disabled'">Empezar de nuevo</button>
 </main>

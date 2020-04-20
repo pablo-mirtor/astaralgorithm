@@ -14,7 +14,11 @@ export class TableComponent implements OnInit {
   numColumns: number;
   clickEnableStart: boolean;
   clickEnableEnd: boolean;
+  restartButton: boolean = false;
   constructor(private tableService: TableServiceService) {
+    this.numRows = 9;
+    this.numColumns = 9;
+    this.restartButton = false;
   }
 
   ngOnInit(): void {
@@ -37,12 +41,21 @@ export class TableComponent implements OnInit {
       node.setState(CellState.forbidden);
       return;
     }
+
+    if(node.getState() === CellState.start)
+      this.nodeTable.setStartCoords(null);
+    else if(node.getState() === CellState.end)
+      this.nodeTable.setEndCoords(null);
+
     node.setState(CellState.empty);
   }
 
 
   updateTable(): void{
-    this.nodeTable = this.tableService.createNewTable(this.numRows, this.numColumns);
+    if(this.numRows >= 3 && this.numRows <= 9 && this.numColumns >= 3 && this.numColumns <= 9)
+      this.nodeTable = this.tableService.createNewTable(this.numRows, this.numColumns);
+    else
+      alert("El mínimo de filas/columnas es 3 y el máximo 10");
   }
 
   iniEnable(): void{
@@ -60,12 +73,14 @@ export class TableComponent implements OnInit {
       alert("Selecciona un inicio");
     else if(this.tableService.table.getEndCoords() == null)
       alert("Selecciona un final");
-    else
+    else {
       this.tableService.solveMap();
+      this.restartButton = true;
+    }
   }
 
   restart(): void{
     this.updateTable();
-
+    this.restartButton = false;
   }
 }
