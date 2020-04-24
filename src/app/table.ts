@@ -53,7 +53,7 @@ export class Table {
   }
 
   setEndCoords(value: Coord) {
-    if(this._endCoords != null){
+    if(this._endCoords != null && this._endCoords != value){
       this.at(this._endCoords).setState(CellState.empty);
     }
     this._endCoords = value;
@@ -63,7 +63,7 @@ export class Table {
   }
 
   setStartCoords(value: Coord) {
-    if(this._startCoords != null){
+    if(this._startCoords != null && this._startCoords != value){
       this.at(this._startCoords).setState(CellState.empty);
     }
     this._startCoords = value;
@@ -73,12 +73,12 @@ export class Table {
     return this._nodeTable[c.getX()][c.getY()];
   }
 
-  getObstacles(): Node[] {
+  getForbiddens(): Node[] {
     let obstacles: Node[] = new Array();
 
     this._nodeTable.forEach(function(e) {
       e.forEach(function(n) {
-        if (!n.getOpened())
+        if (n.getState() === CellState.forbidden)
           obstacles.push(n);
       })
     });
@@ -99,4 +99,5 @@ export class Table {
       }
       return result;
     }
+
 }

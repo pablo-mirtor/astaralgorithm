@@ -1,3 +1,4 @@
-<app-header></app-header>
-<app-table></app-table>
+<app-header (countChanged)="countChangedHandler($event)"></app-header>
+<app-table *ngIf="tableMode===0"></app-table>
+<app-table-way-points *ngIf="tableMode===1"></app-table-way-points>
 <app-footer></app-footer>

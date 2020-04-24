@@ -5,12 +5,15 @@ export class Node {
 
    private _state: CellState;
    private _coords: Coord;
-   private _opened: boolean;
+   private _h: number;
+   private _g: number;
+   private _f: number;
+   private _father: Node;
 
    constructor(x: number, y: number) {
      this._state = CellState.empty;
      this._coords = new Coord(x, y);
-     this._opened = true;
+     this._father = null;
    }
 
   getState(): CellState {
@@ -19,10 +22,6 @@ export class Node {
 
   setState(value: CellState) {
     this._state = value;
-    if(value === CellState.forbidden)
-      this._opened = false;
-    else
-      this._opened = true;
   }
 
   getCoords(): Coord {
@@ -33,12 +32,35 @@ export class Node {
     this._coords = value;
   }
 
-
-  getOpened(): boolean {
-    return this._opened;
+  setFather(value: Node){
+     this._father = value;
   }
 
-  setOpened(value: boolean) {
-    this._opened = value;
+  getFather(): Node{
+     return this._father;
+  }
+
+  getH(): number {
+    return this._h;
+  }
+
+  setH(value: number) {
+    this._h = value;
+  }
+
+  getG(): number {
+    return this._g;
+  }
+
+  setG(value: number) {
+    this._g = value;
+  }
+
+  getF(): number {
+    return this._f;
+  }
+
+  updateF() {
+    this._f = this._h + this._g;
   }
 }

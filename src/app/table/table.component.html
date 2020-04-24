@@ -11,12 +11,15 @@
       <span>Número de filas:</span>
       <input type="number" [(ngModel)]="numRows">
     </div>
-    <button (click)="updateTable()">Cambiar</button>
+    <button (click)="updateTable()" [disabled]="clickEnableStart || clickEnableEnd">Cambiar dimensión</button>
     <div class="setIniEndOptions">
-      <button class="start" (click)="iniEnable()">Añadir inicio</button>
-      <button class="end" (click)="endEnable()">Añadir final</button>
+      <button class="start" (click)="iniEnable()" [disabled]="clickEnableEnd">Añadir inicio</button>
+      <button class="end" (click)="endEnable()" [disabled]="clickEnableStart">Añadir final</button>
     </div>
-    <button class="solve" (click)="solve()">Resolver</button>
+    <button class="solve" (click)="solve()" [disabled]="clickEnableStart || clickEnableEnd">Resolver</button>
   </div>
-  <button (click)="restart()" [className]="restartButton ? 'restart solve': 'disabled'">Empezar de nuevo</button>
+  <div [className]="restartButton ? 'restartDisplay': 'disabled'">
+    <p>Coste: {{cost}}</p>
+    <button (click)="restart()" class="solve">Empezar de nuevo</button>
+  </div>
 </main>

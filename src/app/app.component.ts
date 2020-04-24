@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AStarAlgorithm';
+  tableMode: number = 0;
+  countChangedHandler(mode: number) {
+    this.tableMode = mode;
+  }
 }

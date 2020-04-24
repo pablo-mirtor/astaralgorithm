@@ -22,4 +22,9 @@ export class Coord {
   setY(value: number) {
     this._y = value;
   }
+
+  calculateDistance(dest: Coord): number{
+    let dist: number= Math.hypot(dest.getX()-this.getX(), dest.getY()-this.getY());
+    return dist;
+  }
 }

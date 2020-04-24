@@ -4,4 +4,23 @@ header{
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
+  height: 100%;
+}
+
+ul{
+  display: flex;
+  list-style-type: none;
+}
+
+div{
+  height: 100%;
+}
+label{
+  height: 100%;
+  margin: 0 1em;
+}
+
+label:hover{
+  font-weight: bold;
+  cursor: pointer;
 }

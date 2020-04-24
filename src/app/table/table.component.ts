@@ -15,6 +15,7 @@ export class TableComponent implements OnInit {
   clickEnableStart: boolean;
   clickEnableEnd: boolean;
   restartButton: boolean = false;
+  cost: number;
   constructor(private tableService: TableServiceService) {
     this.numRows = 9;
     this.numColumns = 9;
@@ -74,8 +75,10 @@ export class TableComponent implements OnInit {
     else if(this.tableService.table.getEndCoords() == null)
       alert("Selecciona un final");
     else {
-      this.tableService.solveMap();
+      this.cost = this.tableService.solveMap();
       this.restartButton = true;
+      if(this.cost === 0)
+        alert("No hay solución");
     }
   }
 
