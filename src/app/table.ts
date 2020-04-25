@@ -100,4 +100,15 @@ export class Table {
       return result;
     }
 
+  getWayPoints(): Node[] {
+    let wayPoints: Node[] = new Array();
+
+    this._nodeTable.forEach(function(e) {
+      e.forEach(function(n) {
+        if (n.getState() === CellState.wayPoint)
+          wayPoints.push(n);
+      })
+    });
+    return wayPoints;
+  }
 }

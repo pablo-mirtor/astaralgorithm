@@ -15,26 +15,26 @@ export class TableServiceService {
     return this.table;
   }
 
-  solveMap() : number{
+  solveMap(startNode: Node = this.table.at(this.table.getStartCoords()), endNode: Node = this.table.at(this.table.getEndCoords())) : number{
 
       let open: Node[] = new Array<Node>();
 
-      let current: Node = this.table.at(this.table.getStartCoords());
+      let current: Node = startNode;
       open.push(current); //add the first node
 
       let closed: Node[] = this.table.getForbiddens();
 
       current.setG(0.00);
-      current.setH(current.getCoords().calculateDistance(this.table.getEndCoords()));
+      current.setH(current.getCoords().calculateDistance(endNode.getCoords()));
 
       current.updateF();
 
       while(open.length != 0) {
         current = this.getMinimum(open);
-        if ((current)===this.table.at(this.table.getEndCoords())) {
-          this.reconstructedPath(this.table.at(this.table.getEndCoords()));
+        if ((current)===endNode) {
+          this.reconstructedPath(endNode);
           return current.getF();
-        }//reconstructedPath(this.table.getEndCoords(), cameFrom);
+        }
         else {
           let index = open.indexOf(current);
           open.splice(index, 1);
@@ -55,7 +55,7 @@ export class TableServiceService {
 
             ady.setG(tempG);
 
-            ady.setH(ady.getCoords().calculateDistance(this.table.getEndCoords()));
+            ady.setH(ady.getCoords().calculateDistance(endNode.getCoords()));
 
             ady.updateF();
 
@@ -86,5 +86,24 @@ export class TableServiceService {
             current.setState(CellState.done);
           current = previous;
         }
+  }
+
+  solveWayPoints(wayPointsList: Node[]): number {
+
+      let nextIndex: number = 1;
+      let second: Node = wayPointsList[0];
+      let first = null;
+      let totalCost : number = 0;
+      while (nextIndex < wayPointsList.length) {
+        first = second;
+        second = wayPointsList[nextIndex];
+        let temp = this.solveMap(first, second);
+        if(temp == 0) return 0;
+        else {
+          nextIndex++;
+          totalCost+= temp;
+        }
+    }
+    return totalCost;
   }
 }
