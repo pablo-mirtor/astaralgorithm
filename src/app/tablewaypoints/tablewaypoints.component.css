@@ -1,0 +1,84 @@
+main{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 2em 0;
+}
+
+
+td{
+  width: 5em;
+  background: lightblue;
+  height: 5em;
+}
+
+td.empty{
+  background: lightblue;
+}
+
+td.forbidden{
+  background: lightcoral;
+}
+
+.end{
+  background: lightgreen;
+}
+
+.start{
+  background: gold;
+}
+
+td.done{
+  background: blue;
+}
+
+.wayPoint{
+  background: pink;
+}
+
+input[type=number]{
+  width: 2em;
+}
+button {
+  width: 10em;
+  height: 4em;
+  border-radius: 10px 10px;
+  margin-top: 1em;
+  background: yellow;
+}
+
+button:disabled{
+  background: darkgray;
+}
+.options{
+  border: 3px solid black;
+  border-radius: 10px 10px;
+  padding: 30px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: white;
+}
+
+.disabled{
+  display: none;
+}
+
+.restart{
+  display: block;
+}
+
+.colRowSetter{
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.solve{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+i{
+  font-size: 4vw;
+}

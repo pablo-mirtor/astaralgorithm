@@ -1,0 +1,27 @@
+<main>
+  <table>
+    <tr *ngFor="let row of nodeTable.getNodeTable()">
+      <td *ngFor="let cell of row" (click)="!restartButton && cellClicked(cell)" [ngClass]="cell.getState()">
+        <i *ngIf="cell.getState()==='end'" class="material-icons">outlined_flag</i>
+        <div *ngIf="cell.getState()==='wayPoint'">{{wayPoints.indexOf(cell)}}</div>
+      </td>
+    </tr>
+  </table>
+  <div [className]="restartButton ? 'disabled': 'options'">
+    <div class="colRowSetter">
+      <span>Número de columnas:</span>
+      <input type="number" [(ngModel)]="numColumns" max="9">
+      <span>Número de filas:</span>
+      <input type="number" [(ngModel)]="numRows">
+    </div>
+    <button (click)="updateTable()" [disabled]="clickEnableWayPoint ">Cambiar dimensión</button>
+    <div class="setIniEndOptions">
+      <button class="wayPoint" (click)="iniEnable()">Añadir Way Point</button>
+    </div>
+    <button class="solve" (click)="solve()" [disabled]="clickEnableWayPoint">Resolver</button>
+  </div>
+  <div [className]="restartButton ? 'restartDisplay': 'disabled'">
+    <p>Coste: {{cost}}</p>
+    <button (click)="restart()" class="solve">Empezar de nuevo</button>
+  </div>
+</main>
