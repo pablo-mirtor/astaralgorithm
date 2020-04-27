@@ -1,7 +1,10 @@
 <main>
   <table>
     <tr *ngFor="let row of nodeTable.getNodeTable()">
-      <td *ngFor="let cell of row" (click)="!restartButton && cellClicked(cell)" [ngClass]="cell.getState()"></td>
+      <td *ngFor="let cell of row" (click)="!restartButton && cellClicked(cell)" [ngClass]="cell.getState()">
+        <i *ngIf="cell.getState()==='end'" class="material-icons">outlined_flag</i>
+        <i *ngIf="cell.getState()==='start'" class="material-icons">grade</i>
+      </td>
     </tr>
   </table>
   <div [className]="restartButton ? 'disabled': 'options'">

@@ -2,8 +2,7 @@
   <table>
     <tr *ngFor="let row of nodeTable.getNodeTable()">
       <td *ngFor="let cell of row" (click)="!restartButton && cellClicked(cell)" [ngClass]="cell.getState()">
-        <i *ngIf="cell.getState()==='end'" class="material-icons">outlined_flag</i>
-        <div *ngIf="cell.getState()==='wayPoint'">{{wayPoints.indexOf(cell)}}</div>
+        <div *ngIf="cell.getState()==='wayPoint'" class="wayPointText">{{wayPoints.indexOf(cell)}}</div>
       </td>
     </tr>
   </table>
@@ -21,7 +20,10 @@
     <button class="solve" (click)="solve()" [disabled]="clickEnableWayPoint">Resolver</button>
   </div>
   <div [className]="restartButton ? 'restartDisplay': 'disabled'">
-    <p>Coste: {{cost}}</p>
+    <ul *ngFor="let c of cost; index as i">
+      <li *ngIf="i < cost.length - 1">Coste de {{i}}-{{i+1}}: {{c}}</li>
+      <li *ngIf="i === cost.length - 1">Coste total: {{c}}</li>
+    </ul>
     <button (click)="restart()" class="solve">Empezar de nuevo</button>
   </div>
 </main>

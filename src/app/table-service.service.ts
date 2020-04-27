@@ -32,7 +32,7 @@ export class TableServiceService {
       while(open.length != 0) {
         current = this.getMinimum(open);
         if ((current)===endNode) {
-          this.reconstructedPath(endNode);
+          this.getFinalPath(endNode);
           return current.getF();
         }
         else {
@@ -79,31 +79,38 @@ export class TableServiceService {
   return minCell;
   }
 
-  reconstructedPath( current: Node): void{
+  getFinalPath(current: Node): void{
       while (current != null) {
           let previous: Node = current.getFather();
           if(current.getState() == CellState.empty)
             current.setState(CellState.done);
+          current.setG(0);
+          current.setH(0);
+          current.setFather(null);
           current = previous;
         }
   }
 
-  solveWayPoints(wayPointsList: Node[]): number {
-
+  solveWayPoints(wayPointsList: Node[]): number[] {
+      let sols = new Array<number>();
       let nextIndex: number = 1;
       let second: Node = wayPointsList[0];
       let first = null;
       let totalCost : number = 0;
-      while (nextIndex < wayPointsList.length) {
+      let end: boolean = false;
+      while (nextIndex < wayPointsList.length && !end) {
         first = second;
         second = wayPointsList[nextIndex];
         let temp = this.solveMap(first, second);
-        if(temp == 0) return 0;
+        if(temp == 0)
+          end = true;
         else {
           nextIndex++;
           totalCost+= temp;
+          sols.push(temp);
         }
     }
-    return totalCost;
+    sols.push(totalCost);
+    return sols;
   }
 }

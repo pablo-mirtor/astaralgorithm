@@ -36,6 +36,9 @@ td.done{
   background: pink;
 }
 
+.wayPointText{
+  text-align: center;
+}
 input[type=number]{
   width: 2em;
 }
@@ -79,6 +82,4 @@ button:disabled{
   font-size: 20px;
 }
 
-i{
-  font-size: 4vw;
-}
+

@@ -10,6 +10,7 @@ td{
   width: 5em;
   background: lightblue;
   height: 5em;
+  text-align: center;
 }
 
 td.empty{
@@ -30,6 +31,10 @@ td.forbidden{
 
 td.done{
   background: blue;
+}
+
+i{
+  font-size: 4vw;
 }
 
 input[type=number]{

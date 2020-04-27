@@ -14,7 +14,7 @@ export class TableWayPointsComponent implements OnInit {
   numColumns: number;
   clickEnableWayPoint: boolean;
   restartButton: boolean = false;
-  cost: number;
+  cost: number[];
   wayPoints: Node[] = new Array<Node>();
 
   constructor(private tableService: TableServiceService) {
@@ -46,8 +46,10 @@ export class TableWayPointsComponent implements OnInit {
 
 
   updateTable(): void{
-    if(this.numRows >= 3 && this.numRows <= 9 && this.numColumns >= 3 && this.numColumns <= 9)
+    if(this.numRows >= 3 && this.numRows <= 9 && this.numColumns >= 3 && this.numColumns <= 9){
+      this.wayPoints = new Array<Node>();
       this.nodeTable = this.tableService.createNewTable(this.numRows, this.numColumns);
+    }
     else
       alert("El mínimo de filas/columnas es 3 y el máximo 10");
   }
@@ -63,14 +65,13 @@ export class TableWayPointsComponent implements OnInit {
     else {
       this.cost = this.tableService.solveWayPoints(this.wayPoints);
       this.restartButton = true;
-      if(this.cost === 0)
-        alert("No hay solución");
+      if(this.cost.length < this.wayPoints.length)
+        alert("No hay solución completa");
     }
   }
 
   restart(): void{
     this.updateTable();
-    this.wayPoints = new Array<Node>();
     this.restartButton = false;
   }
 }
