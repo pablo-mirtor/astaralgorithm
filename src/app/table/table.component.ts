@@ -56,7 +56,7 @@ export class TableComponent implements OnInit {
     if(this.numRows >= 3 && this.numRows <= 9 && this.numColumns >= 3 && this.numColumns <= 9)
       this.nodeTable = this.tableService.createNewTable(this.numRows, this.numColumns);
     else
-      alert("El mínimo de filas/columnas es 3 y el máximo 10");
+      alert("El mínimo de filas/columnas es 3 y el máximo 9");
   }
 
   iniEnable(): void{

@@ -51,7 +51,7 @@ export class TableWayPointsComponent implements OnInit {
       this.nodeTable = this.tableService.createNewTable(this.numRows, this.numColumns);
     }
     else
-      alert("El mínimo de filas/columnas es 3 y el máximo 10");
+      alert("El mínimo de filas/columnas es 3 y el máximo 9");
   }
 
   iniEnable(): void{
